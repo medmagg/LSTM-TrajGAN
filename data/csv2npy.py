@@ -26,13 +26,14 @@ def data_conversion(df, tid_col):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--load_path", type=str, default="short_test.csv")
-    parser.add_argument("--save_path", type=str, default="short_output.npy")
+    parser.add_argument("--load_path", type=str, default="dev_train_encoded_final.csv")
+    parser.add_argument("--save_path", type=str, default="train_encoded.npy")
     parser.add_argument("--tid_col", type=str, default="tid")
     args = parser.parse_args()
     
     df = pd.read_csv(args.load_path)
     converted_data = data_conversion(df, args.tid_col)
     np.save(args.save_path, converted_data)
-
+    data = np.load('train_encoded.npy', allow_pickle=True)
+    print(data)
  
